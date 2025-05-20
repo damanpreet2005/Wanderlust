@@ -27,6 +27,18 @@
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Landing Page
+
+![Landing Page](./images/SS1.png)
+
+### 🗂️ Listings Page
+
+![Listings Page](./images/SS2.png)
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
