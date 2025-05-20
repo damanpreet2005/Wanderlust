@@ -1,0 +1,239 @@
+
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#container{
+    margin: 30px;
+    flex:1;
+}
+
+.all-listings{
+    margin-bottom: 1rem;
+}
+
+/* navbar */
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-solid{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+/* footer */
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+.f-info-links, 
+.f-info-socials{
+    width: 100%;
+}
+
+.f-info-socials i{
+    margin-right: 1rem;
+    color: #222222;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.f-info{
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+
+/* cards */
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem;
+    width:100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding:0 !important;
+}
+
+.card-text p{
+    font-weight: 400 !important;
+}
+
+.centered-row {
+  display: flex;
+  justify-content: center;         
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+/* card effect */
+.card-img-overlay{
+    opacity: 0;
+
+}
+
+.card-img-overlay:hover{
+    opacity: 0.3;
+    background-color: black;
+}
+
+.card-img-overlay:hover p{
+    opacity: 1 !important;
+    color: #ebebeb;
+}
+
+/* button */
+.buttonGrp{
+    display: flex;
+}
+
+.buttonGrp button{
+    margin-left: 1rem;
+}
+
+.add-btn{
+    background-color: #fe424d !important;
+}
+
+.btn-show{
+    display: flex;
+}
+
+.btn-show button{
+    margin-left: 1rem;
+    background-color: #fe424d;
+    border-color: #fe424d;
+}
+
+.btn-show button:hover{
+    background-color: black;
+    border-color: black;
+}
+
+.back-btn{
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.back-btn h3{
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.back-btn button{
+    border-color: white !important;
+}
+
+.back-btn i{
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.back-btn button:hover{
+    color: white !important;
+}
+
+/* image */
+.show-img{
+    height: 60vh;
+}
+
+.show-card{
+    width:auto !important;
+}
+
+.card-title{
+    margin-top: 5px;
+}
+
+/* Wanderlust landing page styles */
+.wanderlust-container {
+    height: 90vh;
+    padding: 20px;
+    text-align: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: linear-gradient(180deg, #ffffff, #ffeaea);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.wanderlust-logo {
+    font-size: 3rem;
+    color: #fe424d;
+}
+
+.wanderlust-brand {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.wanderlust-tagline {
+    color: #fe424d;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 2rem;
+}
+
+.wanderlust-form {
+    margin-bottom: 2rem;
+}
+
+.wanderlust-btn {
+    background-color: #fe424d;
+    border: none;
+    padding: 0.8rem 2rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.wanderlust-btn:hover {
+    background-color: #d83a3f;
+}
+
+.wanderlust-description-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+}
+
+.wanderlust-description-text {
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: #444;
+}
