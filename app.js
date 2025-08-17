@@ -30,12 +30,11 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,"public")));
 
 // session configuration
-const store= MongoStore.create({
+const store = MongoStore.create({
     mongoUrl: dbURL,
-    touchAfter: 24 * 3600, // time in seconds
-    crypto: {
-        secret: process.env.SECRET
-    }
+    touchAfter: 24*3600,
+    crypto: { secret: process.env.SECRET },
+    tls: true 
 });
 store.on("error", function(e){
     console.log("Session store error", e);
@@ -80,7 +79,11 @@ main()
     })
 
 async function main(){
-    await mongoose.connect(dbURL);
+    await mongoose.connect(dbURL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        tls: true
+    });
 }
 
 // main route
