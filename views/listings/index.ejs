@@ -1,13 +1,124 @@
 <% layout("/layouts/boilerplate") %>
+<style>
+    #filters {
+        display: flex;
+        margin: 1rem 0;
+        margin-top: -1.5rem;
+        overflow-x: auto;     
+        overflow-y: hidden;  
+        flex-wrap: nowrap;   
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;  
+        scrollbar-width: none;    
+    }
+    #filters::-webkit-scrollbar {
+        display: none; 
+    }
 
+    .filter {
+        text-align: center;
+        margin-right: 2rem;
+        opacity: 0.7;
+        transition: opacity 0.35s ease;
+        flex: 0 0 auto; 
+    }
+    .filter:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+    .filter p {
+        font-size: 0.8rem;
+    }
+    .tax-toggle {
+        margin-left: auto;
+        margin-right: 1rem;
+        margin-top: 0.5rem;
+    }
+    .filter-toggle-btn {
+        display: none;
+        font-size: 1.5rem;
+        margin: 0.5rem;
+        cursor: pointer;
+    }
+    @media (max-width: 768px) {
+        #filters {
+            display: none !important;
+        }
+        #filters.show-filters {
+            display: flex !important;
+        }
+        .filter-toggle-btn {
+            display: inline-block;
+        }
+    }
+</style>
 <body>
+    <div id="filters-container">
+        <div id="filters">
+            <div class="filter">
+                <div>
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+                <p>Trending</p>
+            </div>
+            <div class="filter">
+                <div>
+                    <i class="fa-solid fa-tree"></i>
+                </div>
+                <p>Woods</p>
+            </div>
+            <div class="filter">
+                <div>
+                    <i class="fa-regular fa-snowflake"></i>
+                </div>
+                <p>Snow</p>
+            </div>
+            <div class="filter">
+                <div>
+                    <i class="fa-regular fa-face-laugh-squint"></i>
+                </div>
+                <p>Party</p>
+            </div>
+            <div class="filter">
+                <div>
+                    <i class="fa-solid fa-person-swimming"></i>
+                </div>
+                <p>Pool</p>
+            </div>
+            <div class="filter">
+                <div>
+                    <i class="fa-brands fa-fort-awesome"></i>
+                </div>
+                <p>Castle</p>
+            </div>
+            <div class="filter">
+                <div>
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <p>Gaming</p>
+            </div>
+            <div class="filter">
+                <div>
+                    <i class="fa-solid fa-mountain-city"></i>
+                </div>
+                <p>Mountain</p>
+            </div>
+
+            <div class="tax-toggle">
+                <div class="form-check-reverse form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Show prices after taxes</label>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="all-listings">
         <h3>All Listings</h3>
     </div>
     <div class="row centered-row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
         <% for(let listing of allListings){ %>
             <a href="/listings/<%= listing._id %>" class="listing-link">
-                <div class="card col">
+                <div class="card col listing-card">
                 <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height:20rem">
                 <div class="card-img-overlay">
                     <p class="card-text">
@@ -15,7 +126,7 @@
                     </p>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">
+                    <p class="card-text price-text" data-price="<%= listing.price %>">
                         <b><%= listing.title %></b><br>
                         &#8377;<%=listing.price.toLocaleString("en-IN") %>/night
                     </p>
@@ -27,3 +138,40 @@
     
 </body>
 
+<script>
+    const filterToggleBtn = document.querySelector(".filter-toggle-btn");
+    const filtersContainer = document.getElementById("filters");
+
+    filterToggleBtn.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+            filtersContainer.classList.toggle("show-filters");
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            filtersContainer.classList.remove("show-filters");
+        }
+    });
+
+    const taxToggle = document.getElementById("flexSwitchCheckDefault");
+
+    taxToggle.addEventListener("change", function() {
+        const priceElements = document.querySelectorAll(".price-text");
+
+        priceElements.forEach(el => {
+            const basePrice = parseFloat(el.dataset.price); // original price
+            let displayPrice;
+
+            if (taxToggle.checked) {
+                displayPrice = Math.round(basePrice * 1.18); // add 18% tax
+            } else {
+                displayPrice = basePrice; // original price
+            }
+
+            // update the price in the element while keeping the title intact
+            const title = el.querySelector("b").textContent;
+            el.innerHTML = `<b>${title}</b><br>₹${displayPrice.toLocaleString("en-IN")}/night`;
+        });
+    });
+</script>

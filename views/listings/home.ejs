@@ -18,9 +18,19 @@
         <div class="wanderlust-brand">Wanderlust</div>
         <div class="wanderlust-tagline">Discover Destinations, Embrace the Journey</div>
 
-        <form action="/listings" class="wanderlust-form"  method="get">
-            <button class="wanderlust-btn">Let's Start</button>
-        </form>
+        <div class="columns">
+            <% if (!currentUser) { %>
+                <form action="/signup" method="get">
+                    <button class="btn btn-danger">Signup</button>
+                    <a href="/login" class="btn btn-dark">Login</a>
+                </form>
+            <% } else { %>
+                <form action="/listings" method="get">
+                    <button class="btn btn-danger">Let's start!</button>
+                </form>
+            <% } %>
+        </div>
+        
 
         <div class="wanderlust-description-title">What is Wanderlust?</div>
         <p class="wanderlust-description-text">
