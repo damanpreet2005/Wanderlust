@@ -7,6 +7,8 @@ const multer  = require('multer');
 const { cloudinary, storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
 
+router.get("/search", wrapAsync(listingController.searchListing));
+
 // home route
 router
     .route("/")
@@ -16,14 +18,14 @@ router
 // new route
 router.get("/new", isLoggedIn, listingController.newListing);
 
+// edit route
+router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.editListing));
+
 // show route
 router
     .route("/:id")
     .get(wrapAsync(listingController.showListing))
     .put(isLoggedIn, isOwner, upload.single('listing[image]'), wrapAsync(listingController.updateListing))
     .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing));
-
-// edit route
-router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.editListing));
 
 module.exports = router;

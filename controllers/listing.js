@@ -63,5 +63,26 @@ module.exports. deleteListing= async (req,res)=>{
     req.flash("success", "Listing deleted successfully!");
     console.log(listing);
     res.redirect("/listings");
-    
 }
+
+module.exports.searchListing = async (req, res) => {
+    const { q } = req.query;
+    try {
+        if (!q || q.trim() === "") return res.redirect("/listings");
+
+        // Find the first listing that matches the title (case-insensitive)
+        const listing = await Listing.findOne({ title: { $regex: `^${q}$`, $options: "i" } });
+
+        if (listing) {
+            // Redirect to that listing’s page
+            return res.redirect(`/listings/${listing._id}`);
+        } else {
+            req.flash("error", "No listing found with that name.");
+            return res.redirect("/listings");
+        }
+    } catch (err) {
+        console.error(err);
+        req.flash("error", "Something went wrong during search.");
+        res.redirect("/listings");
+    }
+};
