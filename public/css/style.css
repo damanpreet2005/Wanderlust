@@ -269,3 +269,22 @@ body{
 .add{
     margin-right: 1rem;
 }
+
+.alert-overlay {
+    position: fixed !important;       /* hover above everything */
+    top: 70px;             /* below navbar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    z-index: 2000;
+    margin: 0 !important;  /* remove Bootstrap margins */
+    padding: 1rem 1.5rem;
+    opacity: 0;
+    pointer-events: auto;  /* allow clicks on close button */
+    transition: all 0.5s ease;
+    display: block !important; /* ensure block but doesn’t affect flex layout */
+}
+.slide-down {
+    opacity: 1;
+}
